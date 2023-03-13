@@ -4,15 +4,11 @@ import Card from './Card';
 import Revenue from './Revenue';
 import Earnings from './Earnings';
 import './style.css';
+import { SideBar } from './Sidebar';
 
-export default function Main() {
-    const data={
-        name:"Pradeep",
-        img:"https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg",
-        monthlyEarn:40000,
-        task:"95%",
-        pendingrequest:"15"
-    }
+export default function Main({data}) {
+    
+    const val = "DashBoard"
     const purpose=[{
       head:"Earning(Monthly)",
       value:40000
@@ -31,8 +27,12 @@ export default function Main() {
     }];
 
   return (
-    <div>
-        <Navbar Name={data}/>
+    <div style={{display:'flex'}}>
+      <div>
+          <SideBar />
+      </div>
+        <div style={{width:'80%'}}>
+        <Navbar Name={data} value={val}/>
         <div className='card-purpose'>
           {purpose.map((e,index)=>(
           <Card useHead={e.head} useValue={e.value} key={index}/>
@@ -42,7 +42,7 @@ export default function Main() {
           <Earnings/>
           <Revenue/>
         </div>
-        
+        </div>
     </div>
   )
 }
